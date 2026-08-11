@@ -1,0 +1,31 @@
+# claude-bootstrap
+
+> Python CLI that scaffolds Claude Code projects from the detected project type. A layer above `superpowers` (it declares the dependency rather than competing with it). Emits a layered CLAUDE.md, `.claude/settings.json` (permission baseline), license-audited skill bundles (MIT / Apache-2.0) per profile, and hierarchical per-subdirectory CLAUDE.md files in monorepos. Detection-first, profile-based, idempotent, with a reversible manifest and skill provenance auditing. Status: `1.0.0` (first public release, 2026-08-11) — 6 profiles (universal-software, frontend, backend, data-science, devops, academic), 30 bundled skills (25 vendored under a commit pin + 5 first-party MIT), suite green.
+
+## Documentation
+
+- [Overview](docs/00-overview.md): the big picture, the 3-layer architecture, the bootstrap flow
+- [Anthropic's canonical Claude Code pattern](docs/01-canonical-anthropic.md): memory, skills, agents, hooks, MCP, plugins, settings hierarchy
+- [State of the art](docs/02-state-of-the-art.md): consensus practices, emerging ones, and anti-patterns
+- [Anti-patterns](docs/03-anti-patterns.md): what to avoid when configuring Claude Code
+- [Curated skills](docs/04-skills-curated.md): the bundled skills, their provenance and their licences per profile
+- [Profiles](docs/05-profiles.md): the 6 profiles, skills per profile, permission baselines
+- [Bootstrap flow](docs/06-bootstrap-flow.md): detect -> interview -> install -> doctor -> audit -> uninstall
+- [Glossary](docs/07-glossary.md): canonical Claude Code domain terms
+- [FAQ](docs/08-faq.md): frequent questions, including multi-profile monorepo support
+
+English is canonical. A Portuguese mirror of all nine documents lives at [docs/pt-br/](docs/pt-br/README.md).
+
+## Working inside the repo
+
+- [README](README.md): human entrypoint — positioning, install, and the comparison against native `/init`
+- [AGENTS.md](AGENTS.md): map for Claude agents entering the repo (PT-BR, the repo's working language)
+- [CLAUDE.md](CLAUDE.md): operating instructions — style, principles, locked decisions (PT-BR)
+- [CONTRIBUTING](CONTRIBUTING.md): how to contribute
+- [CITATION.cff](CITATION.cff): citation metadata (ORCID, references, DOI once on Zenodo)
+
+## Optional
+
+- [LICENSE](LICENSE): MIT
+- [CHANGELOG](CHANGELOG.md): change history, Keep a Changelog (EN)
+- [RELEASE](RELEASE.md): the release process

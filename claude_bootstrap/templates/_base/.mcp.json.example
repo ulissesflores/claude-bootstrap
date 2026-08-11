@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "example-stdio": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${CLAUDE_PROJECT_DIR:-.}"],
+      "env": { "EXAMPLE_TOKEN": "${EXAMPLE_TOKEN}" }
+    },
+    "example-http": {
+      "type": "http",
+      "url": "https://mcp.example.com/",
+      "headers": { "Authorization": "Bearer ${EXAMPLE_TOKEN}" }
+    }
+  }
+}

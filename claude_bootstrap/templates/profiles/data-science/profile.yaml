@@ -1,0 +1,38 @@
+name: data-science
+description: >
+  Profile for data-science projects (Python ML, notebooks, ETL pipelines, RAG).
+  Bundles 6 skills covering data-science / ML / data engineering mentor patterns,
+  RAG architecture, SQL workflows, and computer vision. Combine with superpowers
+  for general workflow skills.
+version: 1.0.0
+based_on: universal-software
+language: en
+
+# 6 curated skills (alirezarezvani MIT). (`xlsx` was de-bundled 2026-06-06 — its content is
+# financial modeling, a misfit for data-science.)
+# See profile NOTICE.md for provenance and licensing.
+skills:
+  - senior-data-scientist
+  - senior-ml-engineer
+  - senior-data-engineer
+  - rag-architect
+  - sql-database-assistant
+  - senior-computer-vision
+
+rules:
+  - data-and-training.md
+
+agents:
+  - notebook-reviewer.md
+
+# Data-science tooling permissions (Jupyter, uv, pytest, common DS CLIs).
+settings_overrides:
+  permissions:
+    allow:
+      - "Bash(jupyter *)"
+      - "Bash(uv run *)"
+      - "Bash(uv add *)"
+      - "Bash(python -m pytest *)"
+      - "Bash(python3 -m pytest *)"
+      - "Bash(dvc *)"
+      - "Bash(mlflow *)"

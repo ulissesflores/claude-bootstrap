@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "academic",
+  "displayName": "Academic Skills",
+  "description": "Curated, license-audited academic/scientific skills for Claude Code (citation management, exploratory data analysis, exa-search). From claude-bootstrap's academic profile — 3 skills (K-Dense MIT).",
+  "version": "1.0.0",
+  "author": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "homepage": "https://github.com/ulissesflores/claude-bootstrap",
+  "repository": "https://github.com/ulissesflores/claude-bootstrap",
+  "license": "MIT",
+  "keywords": ["claude-code", "academic", "scientific-writing", "citation", "skills", "research", "pdf"],
+  "defaultEnabled": false
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / Discussion
+    url: https://github.com/ulissesflores/claude-bootstrap/discussions
+    about: For general questions, share what you built, or discuss design — use Discussions, not Issues.
+  - name: Security vulnerability
+    url: https://github.com/ulissesflores/claude-bootstrap/security/advisories/new
+    about: Privately report a security issue. Do not file a public Issue for security bugs.

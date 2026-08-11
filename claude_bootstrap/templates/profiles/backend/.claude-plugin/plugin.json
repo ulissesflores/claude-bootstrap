@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "backend",
+  "displayName": "Backend Skills",
+  "description": "Curated, license-audited backend / web-service skills for Claude Code. CONFIG-ONLY: emits guidance, a permission baseline, curated skills and path-scoped rules — never installs dependencies. From claude-bootstrap's backend profile — 4 skills (alirezarezvani/claude-skills, MIT).",
+  "version": "1.0.0",
+  "author": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "homepage": "https://github.com/ulissesflores/claude-bootstrap",
+  "repository": "https://github.com/ulissesflores/claude-bootstrap",
+  "license": "MIT",
+  "keywords": ["claude-code", "backend", "web-service", "api", "skills", "fastapi", "config-only"],
+  "defaultEnabled": false
+}

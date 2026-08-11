@@ -1,0 +1,104 @@
+name: Bug report
+description: Report a bug in claude-bootstrap
+title: "[bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. Please fill out the sections below — vague reports often get closed without action.
+
+  - type: input
+    id: version
+    attributes:
+      label: claude-bootstrap version
+      description: Output of `claude-bootstrap version`
+      placeholder: "v0.3.0a0"
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `python3 --version`
+      placeholder: "3.12.7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows (WSL)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install_method
+    attributes:
+      label: How did you install claude-bootstrap?
+      options:
+        - pip / PyPI
+        - curl installer (install.sh)
+        - git clone
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: A clear, concise description of the bug.
+      placeholder: When I run `claude-bootstrap init ...`, the X step fails with...
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction steps
+      description: Numbered steps. Include exact commands.
+      placeholder: |
+        1. cd /tmp && mkdir test && cd test
+        2. claude-bootstrap init --profile=...
+        3. Observe error: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      placeholder: I expected ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: doctor
+    attributes:
+      label: claude-bootstrap doctor output (if applicable)
+      description: Run `claude-bootstrap doctor` in the affected project and paste output. Sanitize secrets first.
+      render: text
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / error output
+      description: Paste relevant errors. Sanitize secrets first.
+      render: text
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I searched existing issues for duplicates.
+          required: true
+        - label: I confirmed this happens on the latest version (`claude-bootstrap version`).
+          required: true

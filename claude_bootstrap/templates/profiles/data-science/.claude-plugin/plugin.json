@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "data-science",
+  "displayName": "Data Science Skills",
+  "description": "Curated, license-audited data-science skills for Claude Code (data science, ML engineering, data engineering, RAG architecture, SQL assistant, computer vision). From claude-bootstrap's data-science profile — 6 skills (alirezarezvani MIT).",
+  "version": "1.0.0",
+  "author": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "homepage": "https://github.com/ulissesflores/claude-bootstrap",
+  "repository": "https://github.com/ulissesflores/claude-bootstrap",
+  "license": "MIT",
+  "keywords": ["claude-code", "data-science", "machine-learning", "rag", "skills", "data-engineering", "computer-vision"],
+  "defaultEnabled": false
+}

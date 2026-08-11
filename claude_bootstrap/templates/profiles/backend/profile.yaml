@@ -1,0 +1,59 @@
+name: backend
+description: >
+  Profile for backend / web-service projects (FastAPI, Flask, Django, Express, NestJS,
+  Rails, Spring, …). CONFIG-ONLY: it emits CLAUDE.md guidance, a permission baseline,
+  curated skills, and path-scoped rules. It NEVER installs dependencies — claude-bootstrap
+  emits config, it does not run npm/pip/bundle install. The real config-only guarantee is
+  tool-side: install.py shells no package manager.
+version: 1.0.0
+based_on: universal-software
+language: en
+
+# 4 curated skills (alirezarezvani/claude-skills, MIT — engineering/skills/). Operator-approved
+# 2026-06-30. See NOTICE.md for provenance + licensing; pinned via scripts/skill-pins.json.
+skills:
+  - api-design-reviewer
+  - api-test-suite-builder
+  - database-schema-designer
+  - migration-architect
+
+rules:
+  - backend.md
+
+agents:
+  - api-contract-reviewer.md
+
+# Config-only permission baseline.
+#   ALLOW  — run tests / linters / type-checkers / dev servers (read & verify, never mutate deps).
+#   DENY   — precisely-enumerated package-install commands. These are ADVISORY garnish: the
+#            enforced guarantee is tool-side (install.py shells nothing). Precise `Bash(cmd *)`
+#            forms only — NEVER broad substrings like `*add*`/`*sync*`/`*fetch*`, which would
+#            wrongly block `git add` / `rsync` / `git fetch`.
+settings_overrides:
+  permissions:
+    allow:
+      - "Bash(pytest *)"
+      - "Bash(python -m pytest *)"
+      - "Bash(ruff *)"
+      - "Bash(mypy *)"
+      - "Bash(npm test *)"
+      - "Bash(npm run dev *)"
+      - "Bash(npm run lint *)"
+      - "Bash(eslint *)"
+      - "Bash(uvicorn *)"
+      - "Bash(flask run *)"
+    deny:
+      # claude-bootstrap never installs deps (config-only) — advisory deny of precise commands.
+      - "Bash(pip install *)"
+      - "Bash(uv pip install *)"
+      - "Bash(npm install *)"
+      - "Bash(npm ci *)"
+      - "Bash(pnpm install *)"
+      - "Bash(yarn install *)"
+      - "Bash(poetry add *)"
+      - "Bash(bundle install *)"
+      - "Bash(go get *)"
+      - "Bash(cargo install *)"
+      # service env files hold secrets — don't read them into context
+      - "Read(**/.env)"
+      - "Read(**/.env.*)"

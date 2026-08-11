@@ -1,0 +1,57 @@
+# Run: pip install pre-commit && pre-commit install
+# Manual: pre-commit run --all-files
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # The three REWRITING hooks skip claude_bootstrap/templates/ (same exclude the ruff hooks
+      # already use): those bytes are vendored upstream skills, redistributed verbatim under
+      # their own licence. Normalizing them is what breaks provenance — and
+      # verify-skill-provenance.py only byte-compares SKILL.md, so a rewrite under
+      # references/ or scripts/ would pass the gate silently.
+      - id: trailing-whitespace
+        exclude: (\.j2$|^claude_bootstrap/templates/)
+      - id: end-of-file-fixer
+        exclude: (\.j2$|^claude_bootstrap/templates/)
+      - id: check-yaml
+        exclude: \.j2$
+      - id: check-json
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        exclude: ^claude_bootstrap/templates/
+      - id: check-added-large-files
+        args: [--maxkb=500]
+        exclude: ^docs/assets/   # README media (GIFs/screenshots) is intentionally larger
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+        files: ^bin/.*\.sh$
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.22
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: ^(claude_bootstrap|tests|scripts)/.*\.py$
+        exclude: ^claude_bootstrap/templates/
+      - id: ruff-format
+        files: ^(claude_bootstrap|tests|scripts)/.*\.py$
+        exclude: ^claude_bootstrap/templates/
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.4
+    hooks:
+      - id: actionlint
+        files: ^\.github/workflows/.*\.yml$
+
+  - repo: local
+    hooks:
+      - id: pii-scan
+        name: no personal/institution context in tracked files
+        entry: python3 scripts/pii-scan.py
+        language: system
+        pass_filenames: false   # the script scans `git ls-files` itself
+        always_run: true

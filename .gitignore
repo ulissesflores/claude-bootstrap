@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code — personal/local overrides (gitignored per Anthropic spec)
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Local working-board file some setups keep at the repo root
+WORKSPACE.md
+
+# External tooling caches
+.repowise/
+.serena/
+
+# Claude Code transient session state (e.g. ScheduleWakeup lockfile)
+.claude/scheduled_tasks.lock
+
+# Internal working material — kept on disk, never published.
+# These carry the maintainer's private workspace context (see scripts/pii-scan.py).
+/AUDITORIA-*.md
+/tasks/
+/.kickoff/
+# The private half of the PII gate: person/organisation/host literals the public scanner
+# must check for locally but must never ship. Absent here is a supported state.
+/.pii-patterns.local
+# Publication posture stamp (house profile-guard); local-only, like the pattern file above.
+/.profile

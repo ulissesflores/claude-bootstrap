@@ -1,0 +1,53 @@
+name: skill-drift
+
+# Auto-update guard: weekly content-verify of bundled skills vs their upstream
+# commit pins. Fails (and notifies the owner) when a skill drifts from its pin,
+# i.e. when upstream moved ahead of what we ship. Refresh with:
+#   python3 scripts/verify-skill-provenance.py --sync   (then commit + re-verify)
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify bundled-skill provenance vs upstream pins
+        run: python3 scripts/verify-skill-provenance.py
+
+  schema-currency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify emitted-schema doc URLs are live
+        run: python3 scripts/verify-schema-currency.py
+      - name: Flag schema attestations older than 90 days
+        run: python3 scripts/verify-schema-currency.py --check
+
+  # Deliberately NOT in the blocking `ci.yml` lint job: it is network-dependent, and the
+  # exit code counts dead URLs. Rate-limit/unavailable responses (429/503) are WARNs, so a
+  # busy day cannot redden it. While the repo was private it stayed red, because
+  # three of the URLs it checks are our own: the repo, the install script, and SECURITY.md's
+  # advisory link (honest signal, not noise). All three clear on the flip — measured
+  # 2026-08-10: the same advisory path on a public repo answers 200 to an anonymous curl
+  # (`anthropics/claude-code`); a private repo's URLs 404 to anonymous requests.
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify external URLs in user-facing docs are reachable
+        run: bash scripts/validate-refs.sh --quiet

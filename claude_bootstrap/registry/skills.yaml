@@ -1,0 +1,179 @@
+# Curated skills registry for claude-bootstrap.
+#
+# Each entry MUST have: name, description, source, tier, profiles.
+# Optional: invocation, evidence_url, last_validated_at, version.
+#
+# Tiers (a required label + the `skill list --tier` filter — no tier installs anything;
+# bundles install from each profile's profile.yaml, not from this registry):
+#   1 = core/essential
+#   2 = recommended
+#   3 = experimental (marked unstable)
+# Single source for what tier does and does not claim: docs/04-skills-curated.md §2.
+#
+# Source types:
+#   local: path inside this repo (templates/profiles/<profile>/skills/<name>/)
+#   github: git repo with skill at given subpath
+#
+# Validation date: 2026-08-11 (all 13 github subpaths resolved live at upstream HEAD via the GitHub contents API)
+#
+# ---------------------------------------------------------------------------
+
+# === Tier 1 — Universal core (from obra/superpowers) =======================
+
+- name: brainstorming
+  description: Explore user intent before creating features, components, or modifying behavior
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/brainstorming
+  tier: 1
+  profiles: [universal-software, academic]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: writing-plans
+  description: Use when you have a spec or requirements for a multi-step task, before touching code
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/writing-plans
+  tier: 1
+  profiles: [universal-software, academic]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: executing-plans
+  description: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/executing-plans
+  tier: 1
+  profiles: [universal-software, academic]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: test-driven-development
+  description: Use when implementing any feature or bugfix, before writing implementation code
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/test-driven-development
+  tier: 1
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: systematic-debugging
+  description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/systematic-debugging
+  tier: 1
+  profiles: [universal-software, academic]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: verification-before-completion
+  description: Run verification commands and confirm output before claiming work is complete
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/verification-before-completion
+  tier: 1
+  profiles: [universal-software, academic]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: requesting-code-review
+  description: Use when completing tasks, implementing major features, or before merging
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/requesting-code-review
+  tier: 1
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: receiving-code-review
+  description: Use when receiving code review feedback before implementing suggestions
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/receiving-code-review
+  tier: 1
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+# === Tier 2 — Recommended (opt-in) =========================================
+
+- name: dispatching-parallel-agents
+  description: Use when facing 2+ independent tasks that can be worked on without shared state
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/dispatching-parallel-agents
+  tier: 2
+  profiles: [universal-software, academic]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: using-git-worktrees
+  description: Use when starting feature work that needs isolation from current workspace
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/using-git-worktrees
+  tier: 2
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: subagent-driven-development
+  description: Use when executing implementation plans with independent tasks in current session
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/subagent-driven-development
+  tier: 2
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: writing-skills
+  description: Use when creating new skills, editing existing skills, or verifying skills work
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/writing-skills
+  tier: 2
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11
+
+- name: finishing-a-development-branch
+  description: Use when implementation is complete, all tests pass, before deciding integration approach
+  source:
+    type: github
+    url: https://github.com/obra/superpowers
+    path: skills/finishing-a-development-branch
+  tier: 2
+  profiles: [universal-software]
+  invocation: model-decided
+  evidence_url: https://github.com/obra/superpowers
+  last_validated_at: 2026-08-11

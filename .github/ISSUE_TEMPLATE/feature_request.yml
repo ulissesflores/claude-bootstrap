@@ -1,0 +1,64 @@
+name: Feature request
+description: Suggest a new feature or improvement
+title: "[feat] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! Please describe the **problem** before the **solution** — that helps us evaluate fit and consider alternatives.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the user need, not your proposed solution.
+      placeholder: When I do X, I want Y to happen because Z. Currently I have to ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: who
+    attributes:
+      label: Who benefits?
+      description: Solo dev? Team? Specific profile users? Be concrete.
+      placeholder: Users running claude-bootstrap on monorepos with multiple profiles per subdir...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution (optional)
+      description: If you have one. Otherwise, leave blank — open to design.
+      placeholder: A new flag `--per-subdir` that ...
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you've tried, similar tools' approaches, or "do nothing".
+      placeholder: I tried using cd + multiple init runs but...
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Estimated scope
+      options:
+        - Tiny (single-line change)
+        - Small (one file, ~50 lines)
+        - Medium (multiple files, new tests)
+        - Large (architectural change)
+        - Not sure
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I searched existing issues for duplicates.
+          required: true
+        - label: I described the problem before proposing a solution.
+          required: true

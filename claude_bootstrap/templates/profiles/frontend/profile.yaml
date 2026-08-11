@@ -1,0 +1,39 @@
+name: frontend
+description: >
+  Profile for frontend projects (React, Vue, Svelte, Next.js, plain JS/TS).
+  Bundles 7 skills covering design, web artifacts, automation, and QA.
+  Combine with superpowers for general workflow skills.
+version: 1.0.0
+based_on: universal-software
+language: en
+
+# 7 curated skills (3 from anthropics/skills canon + 4 from alirezarezvani/claude-skills MIT).
+# (`theme-factory` was de-bundled 2026-06-06 — it's a slide-deck theming skill (misfit) and its
+# SKILL.md mandates showing a theme-showcase.pdf that isn't shipped.)
+# See profile NOTICE.md for provenance and licensing.
+skills:
+  - frontend-design
+  - web-artifacts-builder
+  - webapp-testing
+  - senior-frontend
+  - browser-automation
+  - ui-design-system
+  - full-page-screenshot
+
+rules:
+  - frontend.md
+
+agents:
+  - component-reviewer.md
+
+# Frontend tooling permissions (Playwright, npm, package managers).
+settings_overrides:
+  permissions:
+    allow:
+      - "Bash(npm run *)"
+      - "Bash(npm test *)"
+      - "Bash(pnpm *)"
+      - "Bash(bunx *)"
+      - "Bash(npx *)"
+      - "Bash(playwright test *)"
+      - "Bash(playwright codegen *)"

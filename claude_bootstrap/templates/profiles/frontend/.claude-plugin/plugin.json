@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "frontend",
+  "displayName": "Frontend Skills",
+  "description": "Curated, license-audited frontend skills for Claude Code (React/Tailwind/shadcn artifacts, webapp testing, browser automation, UI design systems, full-page screenshots). From claude-bootstrap's frontend profile — 7 skills (Anthropic canon + alirezarezvani MIT).",
+  "version": "1.0.0",
+  "author": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "homepage": "https://github.com/ulissesflores/claude-bootstrap",
+  "repository": "https://github.com/ulissesflores/claude-bootstrap",
+  "license": "MIT",
+  "keywords": ["claude-code", "frontend", "react", "tailwind", "skills", "shadcn", "ui-design"],
+  "defaultEnabled": false
+}

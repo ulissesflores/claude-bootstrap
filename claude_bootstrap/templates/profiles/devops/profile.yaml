@@ -1,0 +1,63 @@
+name: devops
+description: >
+  Profile for devops/SRE/infrastructure projects (Terraform, K8s, CI/CD pipelines,
+  observability). Bundles 5 community-curated skills covering CI/CD design, K8s
+  patterns, runbooks, observability, and secrets. Anthropic
+  canon had no devops skills as of the 2026-06 inventory — entire bundle is
+  alirezarezvani/claude-skills (MIT).
+version: 1.0.0
+based_on: universal-software
+language: en
+
+# 5 curated skills (alirezarezvani MIT). (`senior-devops` de-bundled 2026-06-06 — no-op stub scripts;
+# `release-manager` de-bundled 2026-06-29 — REMOVED from upstream HEAD (FETCH-404 on re-sync), so it
+# can no longer be provenance-verified.)
+# See profile NOTICE.md for provenance and licensing.
+skills:
+  - ci-cd-pipeline-builder
+  - kubernetes-operator
+  - runbook-generator
+  - observability-designer
+  - secrets-vault-manager
+
+rules:
+  - infrastructure.md
+
+agents:
+  - terraform-plan-reviewer.md
+
+# Devops tooling permissions — read/plan ops allowed; destructive ops require explicit confirm.
+settings_overrides:
+  permissions:
+    allow:
+      - "Bash(terraform init *)"
+      - "Bash(terraform plan *)"
+      - "Bash(terraform validate *)"
+      - "Bash(terraform fmt *)"
+      - "Bash(kubectl get *)"
+      - "Bash(kubectl describe *)"
+      - "Bash(kubectl logs *)"
+      - "Bash(helm template *)"
+      - "Bash(helm lint *)"
+      - "Bash(ansible-playbook --check *)"
+      - "Bash(docker ps *)"
+      - "Bash(docker images *)"
+      - "Bash(docker logs *)"
+    deny:
+      # destructive infra verbs
+      - "Bash(terraform apply *)"
+      - "Bash(terraform destroy *)"
+      - "Bash(kubectl delete *)"
+      - "Bash(helm uninstall *)"
+      - "Bash(docker rm *)"
+      # state surgery silently orphans live resources — worse than a flagged destroy
+      - "Bash(terraform state rm *)"
+      - "Bash(terraform state mv *)"
+      - "Bash(terraform import *)"
+      - "Bash(terraform taint *)"
+      # docker volume/data destruction
+      - "Bash(docker system prune *)"
+      - "Bash(docker volume rm *)"
+      # tfstate/tfvars hold provider secrets in plaintext — block reading them into context
+      - "Read(**/*.tfstate)"
+      - "Read(**/*.tfvars)"

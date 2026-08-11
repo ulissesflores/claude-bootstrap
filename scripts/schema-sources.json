@@ -1,0 +1,11 @@
+[
+  { "schema": "settings.permissions", "url": "https://code.claude.com/docs/en/settings", "verified": "2026-06-29" },
+  { "schema": "permission-modes",     "url": "https://code.claude.com/docs/en/permission-modes", "verified": "2026-06-29" },
+  { "schema": "hooks",                "url": "https://code.claude.com/docs/en/hooks", "verified": "2026-06-29" },
+  { "schema": "sandbox",              "url": "https://code.claude.com/docs/en/sandboxing", "verified": "2026-06-29" },
+  { "schema": "agents-frontmatter",   "url": "https://code.claude.com/docs/en/sub-agents", "verified": "2026-06-29" },
+  { "schema": ".mcp.json",            "url": "https://code.claude.com/docs/en/mcp", "verified": "2026-06-29" },
+  { "schema": "plugin.json",          "url": "https://code.claude.com/docs/en/plugins-reference", "verified": "2026-06-29" },
+  { "schema": "statusLine",           "url": "https://code.claude.com/docs/en/statusline", "verified": "2026-06-29" },
+  { "schema": "output-styles",        "url": "https://code.claude.com/docs/en/output-styles", "verified": "2026-06-29" }
+]

@@ -1,0 +1,72 @@
+cff-version: 1.2.0
+message: "If you use claude-bootstrap in a published work or production setup, please cite it as below."
+title: "claude-bootstrap — opinionated Claude Code project scaffolder"
+abstract: >-
+  A Python CLI that scaffolds Claude Code projects from detected project type. It
+  emits a layered CLAUDE.md, a .claude/settings.json permission baseline, curated
+  MIT-licensed skill bundles per profile (universal-software, frontend, backend,
+  data-science, devops, academic), and hierarchical subdirectory CLAUDE.md examples. Positioned
+  above obra/superpowers (declares a dependency, does not duplicate primitives).
+  Detection-first, profile-based, idempotent.
+type: software
+authors:
+  - family-names: Flores
+    given-names: Carlos Ulisses
+    email: c.ulisses@gmail.com
+    orcid: "https://orcid.org/0000-0002-6034-7765"
+    website: "https://ulissesflores.com"
+    # Author CV registry (CNPq Lattes): http://lattes.cnpq.br/6905246706890561
+    affiliation: "Codex Hash Research Laboratory, Codex Hash Ltda., Brazil"
+    city: São Paulo
+    country: BR
+repository-code: "https://github.com/ulissesflores/claude-bootstrap"
+url: "https://github.com/ulissesflores/claude-bootstrap"
+license: MIT
+version: 1.0.0
+date-released: 2026-08-11
+keywords:
+  - claude-code
+  - scaffolding
+  - project-bootstrap
+  - CLAUDE.md
+  - agent-skills
+  - developer-tooling
+  - profile-based
+# Identifiers — populated when the Zenodo DOI is minted for a release:
+# identifiers:
+#   - type: doi
+#     value: "10.5281/zenodo.XXXXXXXX"
+#     description: "Concept DOI (Zenodo) — resolves to the latest version."
+preferred-citation:
+  type: software
+  title: "claude-bootstrap — opinionated Claude Code project scaffolder"
+  authors:
+    - family-names: Flores
+      given-names: Carlos Ulisses
+      orcid: "https://orcid.org/0000-0002-6034-7765"
+      affiliation: "Codex Hash Research Laboratory, Codex Hash Ltda., Brazil"
+  year: 2026
+  version: 1.0.0
+  url: "https://github.com/ulissesflores/claude-bootstrap"
+  license: MIT
+# Ecosystem dependencies (specs and frameworks this tool operationalizes):
+references:
+  - type: website
+    title: "Claude Code documentation"
+    authors:
+      - name: "Anthropic"
+    url: "https://code.claude.com/docs"
+    notes: "Canonical spec for CLAUDE.md, .claude/settings.json permissions, and Agent Skills that this tool scaffolds and audits."
+  - type: software
+    title: "superpowers — a skills framework for Claude Code"
+    authors:
+      - name: "obra"
+    url: "https://github.com/obra/superpowers"
+    notes: "The framework claude-bootstrap layers above; declared as a dependency, never duplicated."
+  - type: website
+    title: "Diataxis — a systematic framework for technical documentation"
+    authors:
+      - family-names: Procida
+        given-names: Daniele
+    url: "https://diataxis.fr"
+    notes: "Documentation structure (tutorial / how-to / reference / explanation) followed under docs/."

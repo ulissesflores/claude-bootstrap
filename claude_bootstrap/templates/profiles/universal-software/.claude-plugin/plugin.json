@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "universal-software",
+  "displayName": "Universal Software Skills",
+  "description": "Default general-purpose skills for Claude Code: prevention before writing new code, hotspot-driven refactoring, post-crash state recovery, a reuse and minimalism review lens, and a security gate for adopting third-party agent skills. From claude-bootstrap's universal-software profile — 5 skills (first-party, MIT).",
+  "version": "1.0.0",
+  "author": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "homepage": "https://github.com/ulissesflores/claude-bootstrap",
+  "repository": "https://github.com/ulissesflores/claude-bootstrap",
+  "license": "MIT",
+  "keywords": ["claude-code", "skills", "refactoring", "code-review", "recovery", "security", "supply-chain"],
+  "defaultEnabled": false
+}

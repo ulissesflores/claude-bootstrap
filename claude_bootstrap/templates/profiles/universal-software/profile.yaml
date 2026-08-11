@@ -1,0 +1,20 @@
+name: universal-software
+description: >
+  Default general-purpose profile for Claude Code projects. Bundles first-party skills
+  authored in this repository (see NOTICE.md), complements rather than replaces
+  superpowers (declared dependency), and lets the user/project add path-scoped rules
+  in .claude/rules/ as needed.
+version: 1.0.0
+language: en
+
+# First-party skills — authored here, MIT (this project), no upstream pin.
+# See NOTICE.md for why provenance reports them as FIRST-PARTY rather than unpinned.
+skills:
+  - newproj
+  - ponytail
+  - recover
+  - refactor
+  - vetting-agent-skills
+rules: []
+
+settings_overrides: {}

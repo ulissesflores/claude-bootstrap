@@ -1,0 +1,58 @@
+{# CLAUDE.md template (claude-bootstrap). Vars: project_name, project_description,
+   primary_language, is_monorepo, git_remote, profile_name, superpowers_available,
+   agentic_stack_interop, extra_rules, generated_at, bootstrap_version. -#}
+# CLAUDE.md — {{ project_name }}
+{% if project_description %}
+> {{ project_description }}
+{% endif %}
+## Project context
+
+- **Language**: `{{ primary_language }}`{% if is_monorepo %} · monorepo{% endif %}{% if git_remote %} · {{ git_remote }}{% endif %}
+- **{% if profiles and profiles|length > 1 %}Profiles**: {% for p in profiles %}`{{ p }}`{% if not loop.last %}, {% endif %}{% endfor %} (union — path-scoped rules per stack; per-subdir `CLAUDE.md` for orientation){% else %}Profile**: `{{ profile_name }}`{% endif %}
+
+## Working principles
+
+1. **Plan mode for 3+ steps** before non-trivial changes.
+2. **Verify before done** — run tests/types/linters; evidence before claims.
+3. **Surgical** — touch only what the task needs; don't refactor adjacent code.
+4. **Conventional Commits** (`feat`/`fix`/`docs`/`refactor`/`chore`/`test`).
+5. **Document the why**, not trivial code.
+
+## Style
+
+- Match existing conventions; no emojis unless asked; no features beyond what was asked.
+- Keep this file ≤60 lines when possible (~140-150 max); split into `.claude/rules/<scope>*.md` if it grows.
+
+## Do NOT
+
+- Force-push to `main`/`production` or run destructive commands without confirmation.
+- Commit secrets — verify before each commit (`.gitignore` covers common cases).
+- Skip hooks (`--no-verify`) without explanation.
+{% if superpowers_available %}
+## Superpowers
+
+Uses [`obra/superpowers`](https://github.com/obra/superpowers) — skills load on-demand; don't duplicate locally.
+{% endif %}{% if agentic_stack_interop %}
+## Agentic-stack
+
+`~/.agent/` interop enabled — memory layers read at session start (see `~/.agent/AGENTS.md`).
+{% endif %}{% if agents_md_interop %}
+@AGENTS.md
+> Imports this repo's `AGENTS.md` so cross-tool agent guidance stays in sync (`@`-imports resolve ≤4 hops).
+{% endif %}
+## Context layers
+
+- **This file** — stable, whole-project instructions (humans edit).
+- **`.claude/rules/<name>.md`** — path-scoped rules (`paths:` glob; auto-load only when editing matching files).
+- **`<subdir>/CLAUDE.md`** — directory-scoped policies, loaded on demand (no root bloat).
+{%- if extra_rules %}
+- Rules registered: {% for r in extra_rules %}`{{ r }}`{% if not loop.last %}, {% endif %}{% endfor %}
+{%- endif %}
+
+## Memory
+
+- **`PROJECT-STATE.md`** — human-curated project state (decisions, goals, recent context); this repo's source of truth.
+- **Auto-memory** — `~/.claude/projects/<this-project>/memory/MEMORY.md`, written by Claude per session (≤200 lines / 25 KB); claude-bootstrap never writes here.
+- `CLAUDE.local.md` — personal overrides (gitignored).
+
+<!-- {% if profiles and profiles|length > 1 %}profiles: {% for p in profiles %}{{ p }}{% if not loop.last %}, {% endif %}{% endfor %}{% else %}profile: {{ profile_name }}{% endif %} · v{{ bootstrap_version|default('unknown') }} · {{ generated_at }} -->

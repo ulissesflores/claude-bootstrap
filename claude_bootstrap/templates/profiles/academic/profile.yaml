@@ -1,0 +1,43 @@
+name: academic
+description: >
+  Profile for academic / scientific writing projects (papers, theses, posters,
+  bibliographies, peer-review prep). Bundles 3 skills covering citation
+  management, exploratory data analysis, and web search for research.
+  Supersedes an earlier institution-specific profile.
+version: 1.0.0
+based_on: universal-software
+language: en
+
+# 3 curated skills (K-Dense-AI MIT). See profile NOTICE.md for provenance and licensing. `doc-coauthoring`, `pdf`, `pptx` and `docx` were
+# de-bundled 2026-07-26: none is licensed for redistribution (the latter three carry an
+# explicit Anthropic no-distribution clause; `doc-coauthoring` carries no license at all).
+# See NOTICE.md. Install them from Anthropic directly if you need them.
+skills:
+  - citation-management
+  - exploratory-data-analysis
+  - exa-search
+
+rules:
+  - latex.md
+
+# Opt-in output style (off by default for other profiles). Verified vs /docs/en/output-styles.
+output_styles:
+  - concise-academic.md
+
+# Common academic workflow permissions (pandoc, bibtex, latex, jupyter) + an opt-in
+# status line. Single-quoted YAML so the inline shell command's inner double-quotes
+# survive into valid JSON; verified vs /docs/en/statusline (type=command, inline command OK).
+settings_overrides:
+  statusLine:
+    type: command
+    command: 'echo "[$(basename "$PWD")] claude-bootstrap"'
+  permissions:
+    allow:
+      - "Bash(pandoc *)"
+      - "Bash(bibtex *)"
+      - "Bash(biber *)"
+      - "Bash(latexmk *)"
+      - "Bash(pdflatex *)"
+      - "Bash(xelatex *)"
+      - "Bash(qpdf *)"
+      - "Bash(jupyter *)"

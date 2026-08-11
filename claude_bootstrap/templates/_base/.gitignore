@@ -1,0 +1,82 @@
+# --- Operating system ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Data science / ML artifacts ---
+.ipynb_checkpoints/
+mlruns/
+wandb/
+*.pkl
+*.pt
+*.ckpt
+*.h5
+
+# --- LaTeX build artifacts ---
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+
+# --- Node / TypeScript ---
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+.nuxt/
+.turbo/
+.parcel-cache/
+
+# --- Rust ---
+target/
+Cargo.lock
+
+# --- Go ---
+vendor/
+
+# --- Claude Code — personal/local overrides (gitignored per Anthropic spec) ---
+CLAUDE.local.md
+.claude/settings.local.json
+
+# --- Secrets — common patterns; verify before committing ---
+.env
+.env.*
+!.env.example
+!.env.sample
+**/credentials*
+**/*.key
+**/*.pem
+**/secrets*
+.aws/credentials
+.ssh/id_*

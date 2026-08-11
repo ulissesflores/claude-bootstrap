@@ -1,0 +1,57 @@
+name: demo
+
+# Regenerates the README GIFs (docs/assets/demo.gif + detect.gif) from their .tape sources
+# via VHS, then commits them if they changed. Manual trigger or when the tapes/CLI change.
+#
+# `paths:` must cover what the GIFs DEPICT, not just what renders them: demo.gif lists the
+# emitted skill dirs, so de-bundling a skill (a profile.yaml edit) silently rots it — that is
+# exactly how it came to advertise `xlsx` for seven weeks after the skill was removed.
+# detect.gif shows the profile each project type maps to, so it depends on detect.py.
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "docs/assets/demo.tape"
+      - "docs/assets/detect.tape"
+      - "claude_bootstrap/cli.py"
+      - "claude_bootstrap/detect.py"
+      - "claude_bootstrap/templates/profiles/**/profile.yaml"
+      - ".github/workflows/demo.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  gif:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install claude-bootstrap (so the demo runs the real CLI)
+        run: pip install -e .
+      - name: Install ffmpeg (VHS dependency — vhs-action's own install step is flaky)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Render demo.gif with VHS
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: docs/assets/demo.tape
+      - name: Render detect.gif with VHS
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: docs/assets/detect.tape
+      - name: Commit the regenerated GIFs (if changed)
+        run: |
+          if ! git diff --quiet -- docs/assets/demo.gif docs/assets/detect.gif; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add docs/assets/demo.gif docs/assets/detect.gif
+            git commit -m "chore(demo): regenerate README GIFs"
+            git push
+          else
+            echo "GIFs unchanged — nothing to commit."
+          fi

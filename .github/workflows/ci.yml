@@ -1,0 +1,139 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.x"
+
+      - name: ShellCheck bin/bootstrap.sh
+        run: |
+          sudo apt-get install -y shellcheck
+          shellcheck bin/bootstrap.sh
+
+      - name: PII scan (no personal/institution context in tracked files)
+        run: python3 scripts/pii-scan.py
+
+      - name: Ruff lint + format check (vendored templates excluded via pyproject)
+        run: |
+          uv run --with ruff==0.15.22 --no-project ruff check claude_bootstrap tests scripts
+          uv run --with ruff==0.15.22 --no-project ruff format --check claude_bootstrap tests scripts
+
+      - name: Validate CITATION.cff
+        run: uv run --with cffconvert==2.0.0 --no-project cffconvert --validate
+
+      - name: Validate claude_bootstrap/templates/_base/.claude/settings.json
+        run: python3 -m json.tool < claude_bootstrap/templates/_base/.claude/settings.json > /dev/null
+
+      - name: Validate claude_bootstrap/registry/skills.yaml
+        run: uv run --with pyyaml --no-project python3 -c "import yaml; yaml.safe_load(open('claude_bootstrap/registry/skills.yaml'))"
+
+      - name: Validate profile.yaml files
+        run: |
+          uv run --with pyyaml --no-project python3 - <<'EOF'
+          import yaml, pathlib, sys
+          failed = []
+          for p in pathlib.Path("claude_bootstrap/templates/profiles").glob("*/profile.yaml"):
+              try:
+                  yaml.safe_load(p.read_text())
+              except yaml.YAMLError as e:
+                  failed.append(f"{p}: {e}")
+          if failed:
+              print("\n".join(failed)); sys.exit(1)
+          EOF
+
+      - name: Validate package builds (wheel + sdist)
+        run: |
+          uv run --with build --no-project python -m build
+          ls dist/
+
+      - name: Validate package installs and CLI works
+        run: |
+          python3 -m venv /tmp/cb-test-venv
+          /tmp/cb-test-venv/bin/pip install dist/*.whl
+          /tmp/cb-test-venv/bin/claude-bootstrap version | grep -qE "^claude-bootstrap v[0-9]+\.[0-9]+"
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.x"
+
+      # The floor guards in-process coverage only. Tests that drive the CLI through
+      # conftest.run_python spawn `uv run --no-project`, a separate environment where the
+      # tracer never loads — skill.py and uninstall.py therefore report 0% while being
+      # covered by real subprocess tests. Measured 2026-08-03: 35% total. Floor set below it.
+      - name: Run tests (with coverage floor)
+        run: |
+          uv run --with pytest --with pytest-cov --with jinja2 --with pyyaml --with rich \
+            --with questionary --no-project pytest tests/ -v \
+            --cov=claude_bootstrap --cov-report=term --cov-fail-under=30
+
+  bootstrap-smoke:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.x"
+
+      - name: Bootstrap init (universal-software, non-interactive)
+        run: |
+          mkdir -p /tmp/cb-smoke
+          cd /tmp/cb-smoke
+          "$GITHUB_WORKSPACE/bin/bootstrap.sh" init --profile=universal-software --non-interactive
+
+      - name: Assert bootstrap artefacts exist
+        run: |
+          test -f /tmp/cb-smoke/CLAUDE.md
+          test -f /tmp/cb-smoke/PROJECT-STATE.md
+          test -f /tmp/cb-smoke/.claude/settings.json
+          test -f /tmp/cb-smoke/.gitignore
+
+      - name: Doctor check (expect 0 fail)
+        run: |
+          out=$(bin/bootstrap.sh doctor /tmp/cb-smoke)
+          echo "$out"
+          echo "$out" | grep -q "0 fail"
+
+      - name: Skill validate
+        run: bin/bootstrap.sh skill validate

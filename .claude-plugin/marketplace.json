@@ -1,0 +1,40 @@
+{
+  "name": "claude-bootstrap",
+  "owner": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "metadata": {
+    "description": "Curated, license-audited MIT skill bundles per domain profile, from claude-bootstrap. Install a domain bundle directly with /plugin, or use the claude-bootstrap CLI to scaffold a full project (CLAUDE.md + settings + bundles).",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "universal-software",
+      "source": "./claude_bootstrap/templates/profiles/universal-software",
+      "description": "Default general-purpose bundle: prevention before new code, hotspot-driven refactoring, post-crash state recovery, a reuse/minimalism review lens, and a security gate for adopting third-party agent skills (5 skills, first-party MIT)."
+    },
+    {
+      "name": "frontend",
+      "source": "./claude_bootstrap/templates/profiles/frontend",
+      "description": "Frontend skills: React/Tailwind artifacts, webapp testing, browser automation, UI design systems (7 skills, MIT)."
+    },
+    {
+      "name": "data-science",
+      "source": "./claude_bootstrap/templates/profiles/data-science",
+      "description": "Data-science skills: ML/data engineering, RAG, SQL, computer vision (6 skills, MIT)."
+    },
+    {
+      "name": "devops",
+      "source": "./claude_bootstrap/templates/profiles/devops",
+      "description": "DevOps skills: CI/CD, Kubernetes, runbooks, observability, secrets (5 skills, MIT)."
+    },
+    {
+      "name": "academic",
+      "source": "./claude_bootstrap/templates/profiles/academic",
+      "description": "Academic/scientific skills: citation management, exploratory data analysis, exa-search (3 skills, MIT)."
+    },
+    {
+      "name": "backend",
+      "source": "./claude_bootstrap/templates/profiles/backend",
+      "description": "Backend / web-service skills: config-only (never installs deps), permission baseline + curated skills for FastAPI/Flask/Django/Express/Rails/Spring (4 skills, MIT)."
+    }
+  ]
+}

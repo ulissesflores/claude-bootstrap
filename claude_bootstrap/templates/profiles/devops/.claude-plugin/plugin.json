@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "devops",
+  "displayName": "DevOps Skills",
+  "description": "Curated, license-audited devops skills for Claude Code (CI/CD pipelines, Kubernetes, runbooks, observability, secrets/vault). From claude-bootstrap's devops profile — 5 skills (100% alirezarezvani MIT).",
+  "version": "1.0.0",
+  "author": { "name": "Carlos Ulisses Flores", "email": "c.ulisses@gmail.com", "url": "https://ulissesflores.com" },
+  "homepage": "https://github.com/ulissesflores/claude-bootstrap",
+  "repository": "https://github.com/ulissesflores/claude-bootstrap",
+  "license": "MIT",
+  "keywords": ["claude-code", "devops", "kubernetes", "ci-cd", "skills", "observability", "runbooks"],
+  "defaultEnabled": false
+}

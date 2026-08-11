@@ -1,0 +1,7 @@
+recursive-include claude_bootstrap/templates *
+recursive-include claude_bootstrap/templates .*
+recursive-include claude_bootstrap/registry *.yaml
+include LICENSE
+include README.md
+include CHANGELOG.md
+include claude_bootstrap/skill-pins.json
