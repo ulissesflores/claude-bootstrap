@@ -10,14 +10,18 @@ from __future__ import annotations
 
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def collected_test_count() -> int:
+    # sys.executable, not `uv run`: the interpreter running this test has pytest by
+    # definition, while CI invokes the suite through `uv run --no-project`, where a bare
+    # nested `uv run` resolves to an environment without pytest (caught by the first CI run).
     out = subprocess.run(
-        ["uv", "run", "python", "-m", "pytest", "tests/", "--collect-only", "-q"],
+        [sys.executable, "-m", "pytest", "tests/", "--collect-only", "-q"],
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
