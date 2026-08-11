@@ -9,16 +9,10 @@ name: demo
 # detect.gif shows the profile each project type maps to, so it depends on detect.py.
 
 on:
+  # Manual-only: GIF regeneration commits to main, which fights branch protection
+  # and spams failure mail on every push. The GIFs are committed; regenerating is a
+  # maintainer action.
   workflow_dispatch: {}
-  push:
-    branches: [main]
-    paths:
-      - "docs/assets/demo.tape"
-      - "docs/assets/detect.tape"
-      - "claude_bootstrap/cli.py"
-      - "claude_bootstrap/detect.py"
-      - "claude_bootstrap/templates/profiles/**/profile.yaml"
-      - ".github/workflows/demo.yml"
 
 permissions:
   contents: write
