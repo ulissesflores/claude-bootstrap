@@ -10,6 +10,7 @@
 `claude-bootstrap` בוחן את הפרויקט שלך, מסביר לך **למה** בחר פרופיל מסוים, מציג את התוכנית, שואל פעם אחת — ואז פולט עץ `.claude/` מלא: בסיס הרשאות, skills **מבוקרי-רישיון** ונבחרים בקפידה, וכללים תחומי-נתיב. אידמפוטנטי, עם `--check` ו-`uninstall` אמיתי.
 
 ![status](https://img.shields.io/badge/status-stable-3fb950?style=flat-square)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21894809.svg)](https://doi.org/10.5281/zenodo.21894809)
 ![python](https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![license](https://img.shields.io/badge/license-MIT-3fb950?style=flat-square)
 ![tests](https://img.shields.io/badge/tests-271%2F271-3fb950?style=flat-square)

@@ -10,6 +10,7 @@
 O `claude-bootstrap` inspeciona teu projeto, te diz **por que** escolheu um profile, mostra o plano, pergunta uma vez — e então emite uma árvore `.claude/` completa: baseline de permissões, skills curadas com **licença auditada** e rules path-scoped. Idempotente, com `--check` e um `uninstall` de verdade.
 
 ![status](https://img.shields.io/badge/status-stable-3fb950?style=flat-square)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21894809.svg)](https://doi.org/10.5281/zenodo.21894809)
 ![python](https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![license](https://img.shields.io/badge/license-MIT-3fb950?style=flat-square)
 ![tests](https://img.shields.io/badge/tests-271%2F271-3fb950?style=flat-square)

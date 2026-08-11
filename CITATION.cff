@@ -32,11 +32,16 @@ keywords:
   - agent-skills
   - developer-tooling
   - profile-based
-# Identifiers — populated when the Zenodo DOI is minted for a release:
-# identifiers:
-#   - type: doi
-#     value: "10.5281/zenodo.XXXXXXXX"
-#     description: "Concept DOI (Zenodo) — resolves to the latest version."
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21894809"
+    description: "Concept DOI (Zenodo) — resolves to the latest version. Use this for citations."
+  - type: doi
+    value: "10.5281/zenodo.21894810"
+    description: "Versioned DOI (Zenodo) for v1.0.0-rc1, the first deposited version"
+  - type: url
+    value: "https://github.com/ulissesflores/claude-bootstrap"
+    description: "Software source repository"
 preferred-citation:
   type: software
   title: "claude-bootstrap — opinionated Claude Code project scaffolder"
@@ -47,7 +52,8 @@ preferred-citation:
       affiliation: "Codex Hash Research Laboratory, Codex Hash Ltda., Brazil"
   year: 2026
   version: 1.0.0
-  url: "https://github.com/ulissesflores/claude-bootstrap"
+  doi: "10.5281/zenodo.21894809"
+  url: "https://doi.org/10.5281/zenodo.21894809"
   license: MIT
 # Ecosystem dependencies (specs and frameworks this tool operationalizes):
 references:

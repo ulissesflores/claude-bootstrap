@@ -22,7 +22,7 @@ English is canonical. A Portuguese mirror of all nine documents lives at [docs/p
 - [AGENTS.md](AGENTS.md): map for Claude agents entering the repo (PT-BR, the repo's working language)
 - [CLAUDE.md](CLAUDE.md): operating instructions — style, principles, locked decisions (PT-BR)
 - [CONTRIBUTING](CONTRIBUTING.md): how to contribute
-- [CITATION.cff](CITATION.cff): citation metadata (ORCID, references, DOI once on Zenodo)
+- [CITATION.cff](CITATION.cff): citation metadata (ORCID, references, concept DOI 10.5281/zenodo.21894809)
 
 ## Optional
 
